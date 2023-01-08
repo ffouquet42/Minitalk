@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:56:42 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/08 11:47:36 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/08 12:38:58 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * pos);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }

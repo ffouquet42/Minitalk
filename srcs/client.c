@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/08 11:55:50 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/08 12:48:09 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,43 @@ void	ft_received_message(int sig)
 	{
 		ft_putstr("received ft_received_message\n");
 		exit(0); //
+	}
+}
+
+// envoie 1/0 pour chaque char (x8 (8bits))
+void	ft_send_char(int pid, char c)
+{
+	int	i;
+
+	i = 1;
+	while (i <= 8)
+	{
+		if ((c >> i) & 1) // check si 1 ou 0 // ????
+			kill(pid, SIGUSR1); // 1
+		else
+			kill(pid, SIGUSR2); // 0
+		sleep(1); //
+		while (!r_bits.received_bit)
+		{
+			pause();
+			r_bits.received_bit = 0;
+		}
+		i++;
+	}
+}
+
+// Decoupe la phrase char par char
+void	ft_send_message(int pid, char *msg)
+{
+	size_t	i;
+	size_t	msg_length;
+
+	i = 0;
+	msg_length = ft_strlen(msg);
+	while (i <= msg_length)
+	{
+		ft_send_char(pid, msg[i]);
+		i++;
 	}
 }
 
