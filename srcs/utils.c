@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:56:42 by fllanet           #+#    #+#             */
-/*   Updated: 2022/12/28 14:25:28 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/08 11:47:36 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,41 @@ void	ft_put_longnbr(long nb)
 	}
 	else
 		ft_putchar(nb + 48);
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	res;
+	int	pos;
+	
+	i = 0;
+	res = 0;
+	pos = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			pos = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - 48);
+		i++;
+	}
+	return (res * pos);
 }

@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/05 11:59:51 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/08 11:07:40 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 	
 	(void)ucontext;
 	if (sig == SIGUSR1)
-		c |= bit; // c = c + bit & bit = c
+		c |= bit; // c = c + bit & bit = c (additionner 2 octets)
 }
 
 int	main(void)
