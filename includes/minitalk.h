@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 05:52:47 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/08 12:52:01 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 16:28:41 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <stdio.h> // dev
 
 typedef struct s_bits
 {
@@ -40,8 +41,5 @@ void	ft_putstr(char *str);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(char *s);
-
-// dev
-# include <stdio.h>
 
 #endif

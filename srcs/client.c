@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/08 12:48:09 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:11:10 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_received_message(int sig)
 	}
 }
 
-// envoie 1/0 pour chaque char (x8 (8bits))
-void	ft_send_char(int pid, char c)
+// convertit un char en binaire (8 bits)
+void	ft_send_char(int pid, char c) // ?
 {
 	int	i;
 
@@ -38,14 +38,14 @@ void	ft_send_char(int pid, char c)
 	while (i <= 8)
 	{
 		if ((c >> i) & 1) // check si 1 ou 0 // ????
-			kill(pid, SIGUSR1); // 1
+			kill(pid, SIGUSR1); // => 1
 		else
-			kill(pid, SIGUSR2); // 0
-		sleep(1); //
-		while (!r_bits.received_bit)
+			kill(pid, SIGUSR2); // => 0
+		sleep(1); // pourquoi attendre 1s ?
+		while (!r_bits.received_bit) // ?
 		{
-			pause();
-			r_bits.received_bit = 0;
+			pause(); // ?
+			r_bits.received_bit = 0; // ?
 		}
 		i++;
 	}
@@ -69,11 +69,12 @@ void	ft_send_message(int pid, char *msg)
 int	main(int argc, char **argv)
 {
 	r_bits.received_bit = 0;
-	signal(SIGUSR1, ft_received_message); // envoie 2 signaux de base ?
-	signal(SIGUSR2, ft_received_bit);
+	signal(SIGUSR1, ft_received_message); // ? envoie 2 signaux de base ? pourquoi
+	signal(SIGUSR2, ft_received_bit); // ?
 	if (argc == 3 && (ft_atoi(argv[1]) > 0))
-		ft_send_message(ft_atoi(argv[1]), argv[2]); //
+		ft_send_message(ft_atoi(argv[1]), argv[2]);
 	else
-		ft_putstr("Incorrect number of arguments");
+		ft_putstr("Need 2 valids arguments (PID / String)");
 	return (0);
 }
+
