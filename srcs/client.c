@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 17:11:10 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:53:43 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_bits	r_bits; // garder la valeur dans les differentes fonctions
 
-void	ft_received_bit(int sig)
+void	ft_received_bit(int sig) // pourquoi prendre un parametre pour le void ?
 {
 	(void)sig;
-	r_bits.received_bit = 1; //
+	r_bits.received_bit = 1;
 }
 
 void	ft_received_message(int sig)
@@ -29,15 +29,14 @@ void	ft_received_message(int sig)
 	}
 }
 
-// convertit un char en binaire (8 bits)
-void	ft_send_char(int pid, char c) // ?
+void	ft_convert_char_to_binary(int pid, char c)
 {
 	int	i;
 
 	i = 1;
 	while (i <= 8)
 	{
-		if ((c >> i) & 1) // check si 1 ou 0 // ????
+		if ((c >> i) & 1) // ???
 			kill(pid, SIGUSR1); // => 1
 		else
 			kill(pid, SIGUSR2); // => 0
@@ -51,17 +50,16 @@ void	ft_send_char(int pid, char c) // ?
 	}
 }
 
-// Decoupe la phrase char par char
-void	ft_send_message(int pid, char *msg)
+void	ft_cut_str_to_char(int pid, char *str)
 {
 	size_t	i;
-	size_t	msg_length;
+	size_t	str_length;
 
 	i = 0;
-	msg_length = ft_strlen(msg);
-	while (i <= msg_length)
+	str_length = ft_strlen(str);
+	while (i <= str_length)
 	{
-		ft_send_char(pid, msg[i]);
+		ft_convert_char_to_binary(pid, str[i]);
 		i++;
 	}
 }
@@ -72,7 +70,7 @@ int	main(int argc, char **argv)
 	signal(SIGUSR1, ft_received_message); // ? envoie 2 signaux de base ? pourquoi
 	signal(SIGUSR2, ft_received_bit); // ?
 	if (argc == 3 && (ft_atoi(argv[1]) > 0))
-		ft_send_message(ft_atoi(argv[1]), argv[2]);
+		ft_cut_str_to_char(ft_atoi(argv[1]), argv[2]);
 	else
 		ft_putstr("Need 2 valids arguments (PID / String)");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 05:52:47 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 16:28:41 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:39:14 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	ft_stock_message(char c, int client_pid);
 char	*ft_print_message(char *str);
 
 // client.c
+void	ft_cut_str_to_char(int pid, char *msg);
+void	ft_convert_char_to_binary(int pid, char c);
 void	ft_received_bit(int sig);
 void	ft_received_message(int sig);
-void	ft_send_char(int pid, char c);
-void	ft_send_message(int pid, char *msg);
+
 
 // utils.c
 void	ft_putchar(char c);
