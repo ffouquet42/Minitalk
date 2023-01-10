@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 17:53:43 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:56:14 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ void	ft_convert_char_to_binary(int pid, char c)
 {
 	int	i;
 
-	i = 1;
-	while (i <= 8)
+	i = 7;
+	while (i >= 0)
 	{
 		if ((c >> i) & 1) // ???
 			kill(pid, SIGUSR1); // => 1
 		else
 			kill(pid, SIGUSR2); // => 0
-		sleep(1); // pourquoi attendre 1s ?
+		sleep(1); // pourquoi attendre 1s
 		while (!r_bits.received_bit) // ?
 		{
 			pause(); // ?
 			r_bits.received_bit = 0; // ?
 		}
-		i++;
+		i--;
 	}
 }
 

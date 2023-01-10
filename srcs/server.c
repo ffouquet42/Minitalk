@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 17:33:03 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:05:13 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,17 @@ void	ft_stock_message(char c, int client_pid)
 	str = ft_strdup(dest);
 	if (!c)
 	{
-		str = ft_print_message(str);
+		str = ft_print_str(str);
 		kill(client_pid, SIGUSR1);
 	}
 }
 
-// affiche la str
-char	*ft_print_message(char *str)
+char	*ft_print_str(char *str)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		ft_putchar(str[i]);
+	ft_putstr(str);
 	ft_putchar('\n');
 	free(str);
-	return (NULL);
+	return (NULL); // ? pourquoi pas function qui renvoie void ?
 }
 
 int	main(void)
