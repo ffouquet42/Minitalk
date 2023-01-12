@@ -40,24 +40,24 @@
 //    exit(1);
 // }
 
-int main()
-{
-	int	i;
-	char c;
+// int main()
+// {
+// 	int	i;
+// 	char c;
 
-	c = 'a';
+// 	c = 'a';
 
-	i = 7;
-	while (i >= 0)
-	{
-		if ((c >> i) & 1)
-			printf("1");
-		else
-			printf("0");
-		i--;
-	}
-	printf("\n");
-}
+// 	i = 7;
+// 	while (i >= 0)
+// 	{
+// 		if ((c >> i) & 1)
+// 			printf("1");
+// 		else
+// 			printf("0");
+// 		i--;
+// 	}
+// 	printf("\n");
+// }
 
 // void	ft_send_char(int pid, char c)
 // {
@@ -79,3 +79,14 @@ int main()
 // 		i--;
 // 	}
 // }
+
+int main(int argc, char **argv)
+{
+	int i = 0;
+	while (i <= 7)
+	{
+		printf("%d\n", i);
+		i++;
+	}
+	return (0);
+}

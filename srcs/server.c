@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 17:29:53 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 18:08:41 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
 {
 	static unsigned char	c = 0;
-	static unsigned char	bit = 128;
+	static unsigned char	bit = 128; // tester avec int 8--? ou pas vu l.22
 	
 	(void)ucontext;
 	if (sig == SIGUSR1)
-		c |= bit; // c = c + bit & bit = c (additionner 2 octets)
+		c |= bit; // c = c + bit & bit = c (additionner 2 octets) / place les 1001010
 	if (bit == 1) // si recu 8 bit
 	{
 		ft_stock_message(c, info->si_pid); // info->si_pid = client pid
@@ -28,7 +28,7 @@ void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
 	}
 	else // divise 8 fois (128 -> 1)
 		bit /= 2; // passer au bit a coter vers la droite
-	kill(info->si_pid, SIGUSR2); // ping client bit recu
+	kill(info->si_pid, SIGUSR2);
 }
 
 void	ft_stock_message(char c, int client_pid) // !!!

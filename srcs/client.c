@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 16:42:35 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 18:15:42 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bits	r_bits;
 
-void	ft_received_bit(int sig) // OK ~
+void	ft_received_bit(int sig) // OK
 {
 	(void)sig;
 	r_bits.received_bit = 1;
@@ -29,24 +29,27 @@ void	ft_received_message(int sig) // !!!
 	}
 }
 
-void	ft_convert_char_to_binary(int pid, char c) // !!!
+void	ft_convert_char_to_binary(int pid, char c) // OK
 {
+	int	shift;
 	int	i;
 
-	i = 7;
-	while (i >= 0)
+	shift = 7;
+	i = 0;
+	while (i <= 7)
 	{
-		if ((c >> i) & 1) // ???
-			kill(pid, SIGUSR1); // => 1
+		if ((c >> shift) & 1)
+			kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2); // => 0
+			kill(pid, SIGUSR2);
 		sleep(1);
-		while (!r_bits.received_bit) // ?
+		while (!r_bits.received_bit)
 		{
-			pause(); // ?
-			r_bits.received_bit = 0; // ?
+			pause();
+			r_bits.received_bit = 0;
 		}
-		i--;
+		shift--;
+		i++;
 	}
 }
 
@@ -64,7 +67,7 @@ void	ft_cut_str_to_char(int pid, char *str) // OK
 	}
 }
 
-int	main(int argc, char **argv) // OK ~
+int	main(int argc, char **argv) // ~
 {
 	r_bits.received_bit = 0;
 	signal(SIGUSR1, ft_received_message);
@@ -75,4 +78,3 @@ int	main(int argc, char **argv) // OK ~
 		ft_putstr("Need 2 valids arguments (PID / String)"); // retype
 	return (0);
 }
-
