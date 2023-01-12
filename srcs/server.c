@@ -6,17 +6,16 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 18:05:13 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:47:39 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minitalk.h" // change for Makefile
+#include "../includes/minitalk.h"
 
-// manage signal and informations
-void	ft_handler(int sig, siginfo_t *info, void *ucontext)
+void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
 {
 	static unsigned char	c = 0;
-	static unsigned char	bit = 128; // unsigned car max 127
+	static unsigned char	bit = 128;
 	
 	(void)ucontext;
 	if (sig == SIGUSR1)
@@ -32,8 +31,7 @@ void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 	kill(info->si_pid, SIGUSR2);
 }
 
-// ajoute le char a la str ?
-void	ft_stock_message(char c, int client_pid)
+void	ft_stock_message(char c, int client_pid) // !!!
 {
 	static char	*str = NULL;
 	char		*dest;
@@ -62,15 +60,18 @@ void	ft_stock_message(char c, int client_pid)
 	}
 }
 
-char	*ft_print_str(char *str)
+char	*ft_print_str(char *str) // OK
 {
-	ft_putstr(str);
-	ft_putchar('\n');
-	free(str);
-	return (NULL); // ? pourquoi pas function qui renvoie void ?
+	if (str != NULL)
+	{
+		ft_putstr(str);
+		ft_putchar('\n');
+		free(str);
+	}
+	return (NULL);
 }
 
-int	main(void)
+int	main(void) // !!!
 {
 	long				server_pid;
 	struct sigaction	data;
