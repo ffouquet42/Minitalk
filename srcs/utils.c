@@ -6,11 +6,11 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:56:42 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 17:48:44 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:51:11 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minitalk.h" // change for Makefile
+#include "../includes/minitalk.h"
 
 void	ft_putchar(char c)
 {
@@ -43,31 +43,6 @@ void	ft_putstr(char *str)
 		ft_putchar(str[i]);
 		i++;
 	}
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	res;
-	int	pos;
-	
-	i = 0;
-	res = 0;
-	pos = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			pos = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - 48);
-		i++;
-	}
-	return (res * pos);
 }
 
 size_t	ft_strlen(const char *str)
