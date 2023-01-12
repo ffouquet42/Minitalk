@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 16:47:39 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:29:53 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
 		c |= bit; // c = c + bit & bit = c (additionner 2 octets)
 	if (bit == 1) // si recu 8 bit
 	{
-		ft_stock_message(c, info->si_pid);
+		ft_stock_message(c, info->si_pid); // info->si_pid = client pid
 		c = 0;
 		bit = 128;
 	}
 	else // divise 8 fois (128 -> 1)
 		bit /= 2; // passer au bit a coter vers la droite
-	kill(info->si_pid, SIGUSR2);
+	kill(info->si_pid, SIGUSR2); // ping client bit recu
 }
 
 void	ft_stock_message(char c, int client_pid) // !!!
@@ -38,7 +38,7 @@ void	ft_stock_message(char c, int client_pid) // !!!
 	int			i;
 
 	i = 0;
-	dest = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	dest = malloc(sizeof(char) * (ft_strlen(str) + 2)); // 1/2
 	if (!dest)
 		return ;
 	if (str)
@@ -50,13 +50,13 @@ void	ft_stock_message(char c, int client_pid) // !!!
 		}
 		free(str);
 	}
-	dest[i++] = c;
-	dest[i] = 0;
+	dest[i++] = c; // dest[i] = c -> i++
+	dest[i] = 0; // dest[i] = '\0'
 	str = ft_strdup(dest);
-	if (!c)
+	if (!c) // si fin de str
 	{
-		str = ft_print_str(str);
-		kill(client_pid, SIGUSR1);
+		str = ft_print_str(str); // print
+		kill(client_pid, SIGUSR1); // kill pour signal client msg receveid
 	}
 }
 

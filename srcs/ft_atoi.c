@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:51:03 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 16:51:27 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:53:59 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_atoi(const char *str)
 	int	i;
 	int	res;
 	int	pos;
-	
+
 	i = 0;
 	res = 0;
 	pos = 1;

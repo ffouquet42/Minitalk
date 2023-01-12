@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:56:42 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 16:51:11 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:34:12 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,27 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *s) // a refaire
+char	*ft_strdup(char *s)
 {
 	int		i;
+	char	*tmp;
 	char	*dest;
 
-	i = -1;
 	if (!s)
 		return (NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	tmp = s;
+	i = 0;
+	while (tmp[i])
+		i++;
+	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
 		return (NULL);
-	while (s[++i])
-		dest[i] = s[i];
-	dest[i] = 0;
+	i = 0;
+	while (tmp[i])
+	{
+		dest[i] = tmp[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (free(s), dest);
 }

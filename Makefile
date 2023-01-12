@@ -2,7 +2,7 @@ SERVER_SRCS	=	srcs/server.c
 
 CLIENT_SRCS	=	srcs/client.c
 
-UTILS_SRCS	=	srcs/utils.c
+UTILS_SRCS	=	srcs/utils.c srcs/ft_atoi.c
 
 SERVER_OBJS		=	$(SERVER_SRCS:.c=.o)
 

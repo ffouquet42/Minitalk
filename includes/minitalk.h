@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 05:52:47 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/10 17:59:43 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:10:06 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	ft_received_message(int sig);
 void	ft_putchar(char c);
 void	ft_put_longnbr(long nb);
 void	ft_putstr(char *str);
-int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(char *s);
+
+// ft_atoi.c
+int		ft_atoi(const char *str);
 
 #endif
