@@ -6,30 +6,30 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:12 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 18:15:42 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/20 10:19:46 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-t_bits	r_bits;
+t_bits	g_bits;
 
-void	ft_received_bit(int sig) // OK
+void	ft_received_bit(int signum)
 {
-	(void)sig;
-	r_bits.received_bit = 1;
+	if (signum == SIGUSR2)
+		g_bits.received_bit = 1;
 }
 
-void	ft_received_message(int sig) // !!!
+void	ft_received_message(int signum)
 {
-	if (sig == SIGUSR1) // preciser au dessus ?
+	if (signum == SIGUSR1)
 	{
-		ft_putstr("received ft_received_message\n");
-		exit(0); // ?
+		ft_putstr("Message received\n");
+		exit(0);
 	}
 }
 
-void	ft_convert_char_to_binary(int pid, char c) // OK
+void	ft_convert_char_to_binary(int pid, char c)
 {
 	int	shift;
 	int	i;
@@ -43,17 +43,17 @@ void	ft_convert_char_to_binary(int pid, char c) // OK
 		else
 			kill(pid, SIGUSR2);
 		sleep(1);
-		while (!r_bits.received_bit)
+		while (g_bits.received_bit == 0)
 		{
 			pause();
-			r_bits.received_bit = 0;
+			g_bits.received_bit = 0;
 		}
 		shift--;
 		i++;
 	}
 }
 
-void	ft_cut_str_to_char(int pid, char *str) // OK
+void	ft_cut_str_to_char(int pid, char *str)
 {
 	size_t	i;
 	size_t	str_length;
@@ -67,14 +67,14 @@ void	ft_cut_str_to_char(int pid, char *str) // OK
 	}
 }
 
-int	main(int argc, char **argv) // ~
+int	main(int argc, char **argv)
 {
-	r_bits.received_bit = 0;
+	g_bits.received_bit = 0;
 	signal(SIGUSR1, ft_received_message);
 	signal(SIGUSR2, ft_received_bit);
 	if (argc == 3 && (ft_atoi(argv[1]) > 0))
 		ft_cut_str_to_char(ft_atoi(argv[1]), argv[2]);
 	else
-		ft_putstr("Need 2 valids arguments (PID / String)"); // retype
+		ft_putstr("2 valid arguments required\n");
 	return (0);
 }
