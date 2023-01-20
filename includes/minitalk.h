@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 05:52:47 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/12 17:10:06 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/20 09:26:21 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_bits
 
 // server.c
 void	ft_handler(int sig, siginfo_t *info, void *ucontext);
-void	ft_stock_message(char c, int client_pid);
+void	ft_stock_char(char c, int client_pid);
 char	*ft_print_str(char *str);
 
 // client.c
