@@ -6,7 +6,7 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/20 10:41:34 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/21 15:10:44 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
 	kill(info->si_pid, SIGUSR2);
 }
 
-void	ft_stock_char(char c, int client_pid) // ~
+void	ft_stock_char(char c, int client_pid)
 {
 	static char	*str = NULL;
 	char		*dest;
 	int			i;
 
 	i = 0;
-	dest = malloc(sizeof(char) * (ft_strlen(str) + 2)); // 1/2
+	dest = malloc(sizeof(char) * (ft_strlen(str) + 2));
 	if (!dest)
 		return ;
 	if (str)
@@ -60,7 +60,7 @@ void	ft_stock_char(char c, int client_pid) // ~
 	}
 }
 
-char	*ft_print_str(char *str) // OK
+char	*ft_print_str(char *str)
 {
 	if (str != NULL)
 	{
@@ -71,7 +71,7 @@ char	*ft_print_str(char *str) // OK
 	return (NULL);
 }
 
-int	main(void) // !!!
+int	main(void)
 {
 	long				server_pid;
 	struct sigaction	data;
@@ -81,10 +81,10 @@ int	main(void) // !!!
 	ft_put_longnbr(server_pid);
 	write(1, "\n", 1);
 	data.sa_sigaction = ft_handler;
-	data.sa_flags = SA_SIGINFO; // ?
-	sigemptyset(&data.sa_mask); // ?
-	sigaction(SIGUSR1, &data, NULL); // ?
-	sigaction(SIGUSR2, &data, NULL); // ?
+	data.sa_flags = SA_SIGINFO;
+	sigemptyset(&data.sa_mask);
+	sigaction(SIGUSR1, &data, NULL);
+	sigaction(SIGUSR2, &data, NULL);
 	while (1)
 		pause();
 }
