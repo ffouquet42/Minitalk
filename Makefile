@@ -16,7 +16,7 @@ CC			=	gcc
 
 RM			=	rm -f
 
-CFLAGS		= 	
+CFLAGS		= 	-Wall -Wextra -Werror -I./includes
 
 
 SERVER_NAME	= 	server
