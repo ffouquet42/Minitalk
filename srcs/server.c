@@ -6,20 +6,20 @@
 /*   By: fllanet <fllanet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 06:32:14 by fllanet           #+#    #+#             */
-/*   Updated: 2023/01/21 15:10:44 by fllanet          ###   ########.fr       */
+/*   Updated: 2023/01/24 12:02:39 by fllanet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-void	ft_handler(int sig, siginfo_t *info, void *ucontext) // !!!
+void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static unsigned char	c = 0;
 	static unsigned char	bit = 128;
-	
+
 	(void)ucontext;
 	if (sig == SIGUSR1)
-		c |= bit; // c = c + bit & bit = c (additionner 2 octets) / place les 1001010
+		c |= bit;
 	if (bit == 1)
 	{
 		ft_stock_char(c, info->si_pid);
