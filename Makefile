@@ -4,13 +4,13 @@ CLIENT_SRCS	=	srcs/client.c
 
 UTILS_SRCS	=	srcs/utils.c srcs/ft_atoi.c
 
-SERVER_OBJS		=	$(SERVER_SRCS:.c=.o)
+SERVER_OBJS	=	$(SERVER_SRCS:.c=.o)
 
-CLIENT_OBJS		=	$(CLIENT_SRCS:.c=.o)
+CLIENT_OBJS	=	$(CLIENT_SRCS:.c=.o)
 
-UTILS_OBJS		=	$(UTILS_SRCS:.c=.o)
+UTILS_OBJS	=	$(UTILS_SRCS:.c=.o)
 
-OBJS			=	$(SERVER_OBJS) $(CLIENT_OBJS) $(UTILS_OBJS)
+OBJS		=	$(SERVER_OBJS) $(CLIENT_OBJS) $(UTILS_OBJS)
 
 CC			=	gcc
 
