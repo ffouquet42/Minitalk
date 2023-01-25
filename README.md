@@ -40,7 +40,7 @@ Create the executables : `server` and `client`.
 ## Testing
 
 ```javascript
-`${copyCodeBlock('<div>Thundercats</div>')}`
+make
 ```
 
 This project respects the norm of 42 and has been tested with the norminette.  
