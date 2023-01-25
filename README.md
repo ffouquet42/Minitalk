@@ -35,13 +35,19 @@ This project contains the necessary Minitalk code to send message through signal
 ## How to use it
 
 Create the executables : `server` and `client`.
-```make```
-
-## Testing
-
 ```javascript
 make
 ```
+Run the : `server`.  
+```javascript
+./server
+```
+Run the : `client`. (Enter the server pid and the message to be transmitted)
+```javascript
+./client SERVER_PID "MSG_TO_SEND"
+```
+
+## Testing
 
 This project respects the norm of 42 and has been tested with the norminette.  
 
